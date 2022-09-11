@@ -10,6 +10,8 @@ not included in the standard Go language or libraries.
 The helpers provided by package `lang` are inspired by the lack of some basic
 language features in the Go language or libraries.
 
+### If/Else
+
 Say we want to conditionally set the value of a string - one that could be a const
 in another language, written only on initialization, but conditionally.
 

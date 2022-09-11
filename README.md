@@ -1,7 +1,9 @@
 # lang
 
-// Package `lang` provides some helpful or at least amusing language features
-// not included in the standard Go language or libraries.
+Package `lang` provides some helpful or at least amusing language features
+not included in the standard Go language or libraries.
+
+[![Run CI Tests](https://github.com/shoenig/lang/actions/workflows/ci.yaml/badge.svg)](https://github.com/shoenig/lang/actions/workflows/ci.yaml)
 
 # Motivation
 
@@ -13,8 +15,8 @@ in another language, written only on initialization, but conditionally.
 
 e.g.
 
-```c
-const* char = (true) ? "foo" : "bar"
+```C#
+final String s = (true) ? "foo" : "bar"
 ```
 
 In Go we cannot do this, instead we must write something like,

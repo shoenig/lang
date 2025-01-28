@@ -1,26 +1,37 @@
 name: Run CI Tests
-on: [push]
-env:
-  GO_VERSION: 1.18.4
+on:
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+  push:
+    branches:
+      - 'main'
 jobs:
-  run-tests:
-    runs-on: ubuntu-22.04
+  run-copywrite:
+    timeout-minutes: 5
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-copywrite@v1.1.3
+      - name: verify copyright
+        run: |
+          copywrite --config .github/workflows/scripts/copywrite.hcl \
+            headers --spdx "BSD-3-Clause" --plan
+  run-tests:
+    timeout-minutes: 5
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
+      - uses: actions/setup-go@v5
         with:
-          go-version: ${{env.GO_VERSION}}
-      - name: Run Go Vet
+          go-version-file: go.mod
+          cache-dependency-path: '**/go.sum'
+      - name: Show System
         run: |
-          go vet ./...
-      - name: Run Go Fmt
-        run: |
-          files=$(go fmt ./...)
-          if [ -n "$files" ]; then
-            echo "Please run gofmt on these files ..."
-            echo "$files"
-            exit 1
-          fi
+          uname -a
+          just sysinfo
       - name: Run Go Test
         run: |
-          go test -race -v ./...
+          just init tidy lint tests

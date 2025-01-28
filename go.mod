@@ -1,3 +1,3 @@
 module github.com/shoenig/lang
 
-go 1.19
+go 1.23

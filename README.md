@@ -16,6 +16,14 @@ import "github.com/shoenig/lang"
 
 ### Examples
 
+##### Maybe
+
+Use `lang.Maybe` as the ternary-operator for Go.
+
+```go
+passing := lang.Maybe[string](check, "ok", "fail")
+```
+
 ##### Pairs
 
 Use `lang.Pair` to conveniently associate two types together.

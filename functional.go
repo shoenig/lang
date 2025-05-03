@@ -7,7 +7,7 @@ package lang
 // type B.
 func Map[A, B any](input []A, f func(A) B) []B {
 	result := make([]B, len(input))
-	for i := 0; i < len(input); i++ {
+	for i := range len(input) {
 		result[i] = f(input[i])
 	}
 	return result

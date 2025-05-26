@@ -12,3 +12,11 @@ func Map[A, B any](input []A, f func(A) B) []B {
 	}
 	return result
 }
+
+// Head returns up to the first count elements in the given input slice.
+//
+// Note that this is yields a shallow copy.
+func Head[A any](input []A, count int) []A {
+	size := min(len(input), count)
+	return input[0:size]
+}

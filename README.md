@@ -24,6 +24,14 @@ Use `lang.Maybe` as the ternary-operator for Go.
 passing := lang.Maybe[string](check, "ok", "fail")
 ```
 
+##### Head
+
+Use `lang.Head` to get a sub-slice of the first N elements of another slice.
+
+```go
+best := lang.Head(items, 3)
+```
+
 ##### Pairs
 
 Use `lang.Pair` to conveniently associate two types together.

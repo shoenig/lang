@@ -34,3 +34,37 @@ func TestMap(t *testing.T) {
 		}
 	})
 }
+
+func TestHead(t *testing.T) {
+	t.Parallel()
+
+	t.Run("empty", func(t *testing.T) {
+		input := []string{}
+		result := Head(input, 3)
+		if len(result) != 0 {
+			t.FailNow()
+		}
+	})
+
+	t.Run("shorter", func(t *testing.T) {
+		input := []string{"a", "b", "c", "d", "e"}
+		result := Head(input, 3)
+		if len(result) != 3 {
+			t.FailNow()
+		}
+		if result[0] != "a" || result[1] != "b" || result[2] != "c" {
+			t.FailNow()
+		}
+	})
+
+	t.Run("longer", func(t *testing.T) {
+		input := []string{"a", "b", "c"}
+		result := Head(input, 5)
+		if len(result) != 3 {
+			t.FailNow()
+		}
+		if result[0] != "a" || result[1] != "b" || result[2] != "c" {
+			t.FailNow()
+		}
+	})
+}

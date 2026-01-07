@@ -68,3 +68,37 @@ func TestHead(t *testing.T) {
 		}
 	})
 }
+
+func TestTail(t *testing.T) {
+	t.Parallel()
+
+	t.Run("empty", func(t *testing.T) {
+		input := []string{}
+		result := Tail(input, 3)
+		if len(result) != 0 {
+			t.FailNow()
+		}
+	})
+
+	t.Run("shorter", func(t *testing.T) {
+		input := []string{"a", "b", "c", "d", "e"}
+		result := Tail(input, 3)
+		if len(result) != 3 {
+			t.FailNow()
+		}
+		if result[0] != "c" || result[1] != "d" || result[2] != "e" {
+			t.FailNow()
+		}
+	})
+
+	t.Run("longer", func(t *testing.T) {
+		input := []string{"a", "b", "c"}
+		result := Tail(input, 5)
+		if len(result) != 3 {
+			t.FailNow()
+		}
+		if result[0] != "a" || result[1] != "b" || result[2] != "c" {
+			t.FailNow()
+		}
+	})
+}

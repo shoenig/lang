@@ -20,3 +20,11 @@ func Head[A any](input []A, count int) []A {
 	size := min(len(input), count)
 	return input[0:size]
 }
+
+// Tail returns up to the last count elements in the given input slice.
+//
+// Note that this yields a shallow copy.
+func Tail[A any](input []A, count int) []A {
+	size := min(len(input), count)
+	return input[len(input)-size:]
+}

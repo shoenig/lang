@@ -26,10 +26,20 @@ passing := lang.Maybe[string](check, "ok", "fail")
 
 ##### Head
 
-Use `lang.Head` to get a sub-slice of the first N elements of another slice.
+Use `lang.Head` to get a sub-slice of the first N elements of another slice. `lang.Head` will
+return _up to_ N elements, gracefully handling slices that may have fewer than N elements.
 
 ```go
 best := lang.Head(items, 3)
+```
+
+#### Tail
+
+Use `lang.Tail` to get a sub-slice of the last N elements of another slice. `lang.Tail` will
+return _up to_ N elements, gracefully handling slices that may have fewer than N elements.
+
+```go
+worst := lang.Tail(items, 3)
 ```
 
 ##### Pairs

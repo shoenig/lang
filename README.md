@@ -16,6 +16,16 @@ import "github.com/shoenig/lang"
 
 ### Examples
 
+##### Map
+
+Use `lang.Map` to apply a function across all elements of a slice.
+
+```go
+conversion := lang.Map[int, string](originals, func(i int) string {
+  return strconv.Itoa(i)
+})
+```
+
 ##### Maybe
 
 Use `lang.Maybe` as the ternary-operator for Go.
@@ -30,7 +40,7 @@ Use `lang.Head` to get a sub-slice of the first N elements of another slice. `la
 return _up to_ N elements, gracefully handling slices that may have fewer than N elements.
 
 ```go
-best := lang.Head(items, 3)
+best := lang.Head[string](items, 3)
 ```
 
 #### Tail
@@ -39,7 +49,7 @@ Use `lang.Tail` to get a sub-slice of the last N elements of another slice. `lan
 return _up to_ N elements, gracefully handling slices that may have fewer than N elements.
 
 ```go
-worst := lang.Tail(items, 3)
+worst := lang.Tail[string](items, 3)
 ```
 
 ##### Pairs

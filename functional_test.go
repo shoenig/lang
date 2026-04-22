@@ -6,6 +6,7 @@ package lang
 import (
 	"slices"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -33,6 +34,44 @@ func TestMap(t *testing.T) {
 			t.FailNow()
 		}
 	})
+}
+
+func TestFilterFunc(t *testing.T) {
+	t.Parallel()
+
+	filterfunc := func(s string) bool {
+		return strings.HasPrefix(s, "h") || strings.HasPrefix(s, "H")
+	}
+
+	t.Run("empty", func(t *testing.T) {
+		input := []string{}
+		exp := []string{}
+		result := FilterFunc(input, filterfunc)
+		if !slices.Equal(exp, result) {
+			t.FailNow()
+		}
+	})
+
+	t.Run("full", func(t *testing.T) {
+		input := []string{"foo", "hello", "bar", "Hi"}
+		exp := []string{"foo", "bar"}
+		result := FilterFunc(input, filterfunc)
+		if !slices.Equal(exp, result) {
+			t.FailNow()
+		}
+	})
+}
+
+func TestFilter(t *testing.T) {
+	t.Parallel()
+
+	input := []string{"foo", "hello", "bar", "hi"}
+	items := []string{"hello", "hi"}
+	exp := []string{"foo", "bar"}
+	result := Filter(input, items...)
+	if !slices.Equal(exp, result) {
+		t.FailNow()
+	}
 }
 
 func TestHead(t *testing.T) {

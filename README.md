@@ -26,6 +26,20 @@ conversion := lang.Map[int, string](originals, func(i int) string {
 })
 ```
 
+##### Filter / FilterFunc
+
+Use `lang.Filter` or `lang.FilterFunc` to remove elements from a slice.
+
+```go
+filtered := lang.Filter[string](items, unwanted...)
+```
+
+```go
+filtered := lang.FilterFunc[string](items, func(s string) bool {
+  return someCondition(s)
+})
+```
+
 ##### Maybe
 
 Use `lang.Maybe` as the ternary-operator for Go.

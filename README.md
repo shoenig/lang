@@ -30,7 +30,7 @@ Use `lang.Critical` to hold a mutex lock and execute a function with a return
 value.
 
 ```go
-v := lang.CriticalGet(lock, func() int {
+v := lang.CriticalGet[int](lock, func() int {
   shared += 1
   return shared
 })

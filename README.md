@@ -16,6 +16,26 @@ import "github.com/shoenig/lang"
 
 ### Examples
 
+##### Critical
+
+Use `lang.Critical` to hold a mutex lock and execute a function.
+
+```go
+lang.Critical(lock, func() {
+  shared += 1
+})
+```
+
+Use `lang.Critical` to hold a mutex lock and execute a function with a return
+value.
+
+```go
+v := lang.CriticalGet(lock, func() int {
+  shared += 1
+  return shared
+})
+```
+
 ##### Map
 
 Use `lang.Map` to apply a function across all elements of a slice.

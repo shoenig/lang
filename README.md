@@ -26,7 +26,7 @@ lang.Critical(lock, func() {
 })
 ```
 
-Use `lang.Critical` to hold a mutex lock and execute a function with a return
+Use `lang.CriticalGet` to hold a mutex lock and execute a function with a return
 value.
 
 ```go
